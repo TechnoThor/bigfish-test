@@ -25,19 +25,19 @@ class PhoneNumberUnique implements ImplicitRule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
         try {
-            $existPhoneNumbers=UserPhoneNumber::where('phoneNumber', $value)->where('userId',  $this->request->user->userId)->count();
-            if ($existPhoneNumbers){
+            $existPhoneNumbers = UserPhoneNumber::where('phoneNumber', $value)->where('userId', $this->request->user->userId)->count();
+            if ($existPhoneNumbers) {
                 return false;
             }
             return true;
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return false;
         }
 

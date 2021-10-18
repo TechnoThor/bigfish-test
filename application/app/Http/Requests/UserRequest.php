@@ -29,11 +29,11 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'required',
-            'email'=>'required|unique:users|email',
-            'dateOfBirth'=>'required|date',
-            'phoneNumbers'=> 'required',
-            'phoneNumbers.*'=> ['distinct', new HunPhoneNumber($this)],
+            'name' => 'required',
+            'email' => 'required|unique:users|email',
+            'dateOfBirth' => 'required|date',
+            'phoneNumbers' => 'required',
+            'phoneNumbers.*' => ['distinct', new HunPhoneNumber($this)],
         ];
     }
 }

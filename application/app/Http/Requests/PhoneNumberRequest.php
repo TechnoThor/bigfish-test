@@ -28,8 +28,8 @@ class PhoneNumberRequest extends FormRequest
     public function rules()
     {
         return [
-            'phoneNumbers'=>'array|required',
-            'phoneNumbers.*'=> [new HunPhoneNumber, new PhoneNumberUnique($this)],
+            'phoneNumbers' => 'array|required',
+            'phoneNumbers.*' => [new HunPhoneNumber, new PhoneNumberUnique($this)],
         ];
     }
 }

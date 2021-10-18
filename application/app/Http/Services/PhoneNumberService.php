@@ -15,14 +15,15 @@ class PhoneNumberService
      * @param Collection $data
      * @return Collection
      */
-    public function storePhoneNumbers(User $user, Collection $data){
+    public function storePhoneNumbers(User $user, Collection $data)
+    {
 
         $phoneNumbers = [];
 
-        foreach ($data->get('phoneNumbers') as $phoneNumber){
-            $phoneNumber=UserPhoneNumber::create([
-                'phoneNumber'=>$phoneNumber,
-                'userId'=>$user->userId
+        foreach ($data->get('phoneNumbers') as $phoneNumber) {
+            $phoneNumber = UserPhoneNumber::create([
+                'phoneNumber' => $phoneNumber,
+                'userId' => $user->userId
             ]);
             array_push($phoneNumbers, $phoneNumber);
         }
@@ -35,7 +36,8 @@ class PhoneNumberService
      * @param UserPhoneNumber $userPhoneNumber
      * @return bool|null
      */
-    public function destroyPhoneNumbers(UserPhoneNumber $userPhoneNumber){
+    public function destroyPhoneNumbers(UserPhoneNumber $userPhoneNumber)
+    {
         return $userPhoneNumber->delete();
     }
 }

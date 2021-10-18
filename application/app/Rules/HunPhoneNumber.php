@@ -19,13 +19,13 @@ class HunPhoneNumber implements ImplicitRule
     /**
      * Determine if the validation rule passes.
      *
-     * @param  string  $attribute
-     * @param  mixed  $value
+     * @param string $attribute
+     * @param mixed $value
      * @return bool
      */
     public function passes($attribute, $value)
     {
-        return (str_starts_with($value, '+36') || str_starts_with($value, '0036')) && $this->isDigits($value, 5,14);
+        return (str_starts_with($value, '+36') || str_starts_with($value, '0036')) && $this->isDigits($value, 5, 14);
     }
 
     /**

@@ -30,7 +30,8 @@ class UserController extends Controller
      * @param User $user
      * @return UserResource
      */
-    public function getUser(User $user){
+    public function getUser(User $user)
+    {
         return new UserResource($user);
     }
 
@@ -41,10 +42,11 @@ class UserController extends Controller
      * @param UserRequest $request
      * @return UserResource
      */
-    public function storeUser(UserRequest $request){
+    public function storeUser(UserRequest $request)
+    {
         $user = $this->userService->storeUser(collect($request));
 
-        if ($request->has('phoneNumbers')){
+        if ($request->has('phoneNumbers')) {
             $this->phoneNumberService->storePhoneNumbers($user, collect($request));
         }
 
@@ -59,7 +61,8 @@ class UserController extends Controller
      * @param PhoneNumberRequest $request
      * @return PhoneNumberResourceCollection
      */
-    public function storePhoneNumbers(User $user, PhoneNumberRequest $request){
+    public function storePhoneNumbers(User $user, PhoneNumberRequest $request)
+    {
         return new PhoneNumberResourceCollection($this->phoneNumberService->storePhoneNumbers($user, collect($request)));
     }
 
@@ -70,7 +73,8 @@ class UserController extends Controller
      * @param User $user
      * @return bool|null
      */
-    public function destroyUser(User $user){
+    public function destroyUser(User $user)
+    {
         return $this->userService->destroyUser($user);
     }
 
@@ -82,7 +86,8 @@ class UserController extends Controller
      * @param UserPhoneNumber $phoneNumber
      * @return bool|null
      */
-    public function destroyPhoneNumbers(User $user, UserPhoneNumber $phoneNumber){
+    public function destroyPhoneNumbers(User $user, UserPhoneNumber $phoneNumber)
+    {
         return $this->phoneNumberService->destroyPhoneNumbers($phoneNumber);
     }
 }

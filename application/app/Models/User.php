@@ -54,7 +54,8 @@ class User extends Authenticatable
     /**
      * HasMany relation between User and PhoneNumbers
      */
-    public function phoneNumbers(){
+    public function phoneNumbers()
+    {
         return $this->hasMany(UserPhoneNumber::class, 'userId', 'userId');
     }
 }

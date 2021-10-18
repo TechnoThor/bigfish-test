@@ -15,14 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::group(['prefix'=>'users'], function(){
+Route::group(['prefix' => 'users'], function () {
     Route::post('/', [UserController::class, 'storeUser']);
-    Route::group(['prefix'=>'{user}'], function(){
+    Route::group(['prefix' => '{user}'], function () {
         Route::delete('/', [UserController::class, 'destroyUser']);
         Route::get('/', [UserController::class, 'getUser']);
-        Route::group(['prefix'=>'phone-numbers'], function(){
+        Route::group(['prefix' => 'phone-numbers'], function () {
             Route::post('/', [UserController::class, 'storePhoneNumbers']);
-            Route::group(['prefix'=>'{phoneNumber}'], function(){
+            Route::group(['prefix' => '{phoneNumber}'], function () {
                 Route::delete('/', [UserController::class, 'destroyPhoneNumbers']);
             });
         });

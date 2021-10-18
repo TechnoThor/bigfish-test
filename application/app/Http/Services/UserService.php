@@ -13,11 +13,12 @@ class UserService
      * @param Collection $data
      * @return User
      */
-    public function storeUser(Collection $data){
+    public function storeUser(Collection $data)
+    {
         return User::create([
-            'email'=>$data->get('email'),
-            'name'=>$data->get('name'),
-            'dateOfBirth'=>$data->get('dateOfBirth'),
+            'email' => $data->get('email'),
+            'name' => $data->get('name'),
+            'dateOfBirth' => $data->get('dateOfBirth'),
         ]);
     }
 
@@ -26,7 +27,8 @@ class UserService
      * @param User $user
      * @return bool
      */
-    public function destroyUser(User $user){
+    public function destroyUser(User $user)
+    {
         return $user->delete();
     }
 

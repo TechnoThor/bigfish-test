@@ -24,7 +24,8 @@ class UserPhoneNumber extends Model
     /**
      * BelongsTo relation between User and PhoneNumbers
      */
-    public function users(){
+    public function users()
+    {
         $this->belongsTo(User::class, 'userId', 'userId');
     }
 }
