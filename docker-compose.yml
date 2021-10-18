@@ -1,0 +1,46 @@
+version: "3.7"
+services:
+
+#Laravel App
+  app:
+    build:
+      args:
+        user: daniel
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: bigfish-test
+    restart: unless-stopped
+    working_dir: /var/www/application
+    volumes:
+      - ./:/var/www
+    networks:
+      - mynetwork
+
+#Nginx Service
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+    networks:
+      - mynetwork
+  
+#Mysl Service
+  db:
+    image: mysql:8
+    restart: always
+    environment:
+      MYSQL_DATABASE: bigfishtest
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_USER: root
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
