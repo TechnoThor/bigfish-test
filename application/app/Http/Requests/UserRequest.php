@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\HunPhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserRequest extends FormRequest
@@ -13,22 +14,26 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
      * Get the validation rules that apply to the request.
-     *
+     * @bodyParam name string required
+     * @bodyParam email email required unique
+     * @bodyParam dateOfBirth date required
+     * @bodyParam phoneNumbers array required
+     * @bodyParam phoneNumbers.* string required distinct onlyHungarian
      * @return array
      */
     public function rules()
     {
         return [
-            'userId'=>'required|unique:users',
             'name'=>'required',
-            'email'=>'required|unique:users|email:rfc,dns',
-            'dateOfBirth'=>'required',
-            'phoneNumbers'=> PhoneNumberRequest::class,
+            'email'=>'required|unique:users|email',
+            'dateOfBirth'=>'required|date',
+            'phoneNumbers'=> 'required',
+            'phoneNumbers.*'=> ['distinct', new HunPhoneNumber($this)],
         ];
     }
 }

@@ -11,7 +11,7 @@ services:
       dockerfile: Dockerfile
     image: bigfish-test
     restart: unless-stopped
-    working_dir: /var/www/application
+    working_dir: /var/www/application/
     volumes:
       - ./:/var/www
     networks:
@@ -32,12 +32,11 @@ services:
 #Mysl Service
   db:
     image: mysql:8
-    restart: always
+    restart: unless-stopped
     environment:
-      MYSQL_DATABASE: bigfishtest
+      MYSQL_DATABASE: bigfish
+      MYSQL_ROOT_USER: root
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
-      MYSQL_USER: root
     networks:
       - mynetwork
 

@@ -23,24 +23,66 @@ class UserController extends Controller
         $this->phoneNumberService = new PhoneNumberService();
     }
 
+    /**
+     * Returning with User and his phone numbers.
+     *
+     *
+     * @param User $user
+     * @return UserResource
+     */
+    public function getUser(User $user){
+        return new UserResource($user);
+    }
+
+    /**
+     * Storing the user with his Phone numbers.
+     *
+     *
+     * @param UserRequest $request
+     * @return UserResource
+     */
     public function storeUser(UserRequest $request){
         $user = $this->userService->storeUser(collect($request));
 
-        $this->phoneNumberService->storePhoneNumbers($user, collect($request));
+        if ($request->has('phoneNumbers')){
+            $this->phoneNumberService->storePhoneNumbers($user, collect($request));
+        }
 
         return new UserResource($user);
     }
 
+    /**
+     * Storing Phone numbers for the given User.
+     *
+     *
+     * @param User $user
+     * @param PhoneNumberRequest $request
+     * @return PhoneNumberResourceCollection
+     */
     public function storePhoneNumbers(User $user, PhoneNumberRequest $request){
-
-        new PhoneNumberResourceCollection($this->phoneNumberService->storePhoneNumbers($user, collect($request)));
+        return new PhoneNumberResourceCollection($this->phoneNumberService->storePhoneNumbers($user, collect($request)));
     }
 
+    /**
+     * Destroying the User and his phone numbers.
+     *
+     *
+     * @param User $user
+     * @return bool|null
+     */
     public function destroyUser(User $user){
         return $this->userService->destroyUser($user);
     }
 
-    public function destroyPhoneNumbers(UserPhoneNumber $userPhoneNumber){
-        $this->phoneNumberService->destroyPhoneNumbers($userPhoneNumber);
+    /**
+     * Destroying the given phone number.
+     *
+     *
+     * @param User $user
+     * @param UserPhoneNumber $phoneNumber
+     * @return bool|null
+     */
+    public function destroyPhoneNumbers(User $user, UserPhoneNumber $phoneNumber){
+        return $this->phoneNumberService->destroyPhoneNumbers($phoneNumber);
     }
 }

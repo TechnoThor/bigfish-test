@@ -25,7 +25,19 @@ class HunPhoneNumber implements ImplicitRule
      */
     public function passes($attribute, $value)
     {
-        return str_starts_with($value, '+36') || str_starts_with($value, '0036');
+        return (str_starts_with($value, '+36') || str_starts_with($value, '0036')) && $this->isDigits($value, 5,14);
+    }
+
+    /**
+     * Check number has correct format
+     *
+     * @param string $s
+     * @return bool
+     */
+    public function isDigits($s)
+    {
+        $s = str_replace(['+', '-', ' '], '', $s);
+        return preg_match("/^\d+$/", $s);
     }
 
     /**

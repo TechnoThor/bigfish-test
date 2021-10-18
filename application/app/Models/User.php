@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'dateOfBirth'
     ];
 
     /**
@@ -47,12 +48,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'dateOfBirth' => 'date',
     ];
 
     /**
      * HasMany relation between User and PhoneNumbers
      */
     public function phoneNumbers(){
-        $this->hasMany(UserPhoneNumber::class, 'userId', 'userId');
+        return $this->hasMany(UserPhoneNumber::class, 'userId', 'userId');
     }
 }

@@ -9,6 +9,12 @@ use Illuminate\Support\Collection;
 
 class PhoneNumberService
 {
+    /**
+     * Storing phone numbers for the given User.
+     * @param User $user
+     * @param Collection $data
+     * @return Collection
+     */
     public function storePhoneNumbers(User $user, Collection $data){
 
         $phoneNumbers = [];
@@ -16,7 +22,7 @@ class PhoneNumberService
         foreach ($data->get('phoneNumbers') as $phoneNumber){
             $phoneNumber=UserPhoneNumber::create([
                 'phoneNumber'=>$phoneNumber,
-                'userid'=>$user->userId
+                'userId'=>$user->userId
             ]);
             array_push($phoneNumbers, $phoneNumber);
         }
@@ -24,6 +30,11 @@ class PhoneNumberService
         return collect($phoneNumbers);
     }
 
+    /**
+     * Destroying the given phone number.
+     * @param UserPhoneNumber $userPhoneNumber
+     * @return bool|null
+     */
     public function destroyPhoneNumbers(UserPhoneNumber $userPhoneNumber){
         return $userPhoneNumber->delete();
     }
