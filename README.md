@@ -13,6 +13,7 @@ ezután szükséges futtatni egy "docker exec -it bigfish-test_app_1 bash" paran
 
 POST:: '/users' => Felhasználó létrehozása
                   paraméterek => "name, email, dateOfBirth, phoneNumbers=>array"
+
 GET:: '/users/{user}' => Visszaadja a felhasználót a hozzá tartozó telefonszámokkal id alapján
     
 DELETE:: '/users/{user}/' => felhasználó törlése id alapján
