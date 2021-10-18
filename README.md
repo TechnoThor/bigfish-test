@@ -9,6 +9,8 @@ a könnyebb tesztelés érdekében a változok a .envben és a docker-compose.ym
 
 ezután szükséges futtatni egy "docker exec -it bigfish-test_app_1 bash" parancsot majd a megnyíló cli-ben a "php artisan migrate"-et futtassuk
 
+ezután a böngészőben már elérhető az oldal: http://localhost:8000/
+
 ##Api útvonalak
 
 POST:: '/users' => Felhasználó létrehozása
