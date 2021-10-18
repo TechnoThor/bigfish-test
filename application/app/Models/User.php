@@ -24,6 +24,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * This is the primary kex attribute.
+     *
+     * @var array
+     */
+    protected $primaryKey = 'userId';
+
+    /**
      * The attributes that should be hidden for serialization.
      *
      * @var array
@@ -41,4 +48,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * HasMany relation between User and PhoneNumbers
+     */
+    public function phoneNumbers(){
+        $this->hasMany(UserPhoneNumber::class, 'userId', 'userId');
+    }
 }
