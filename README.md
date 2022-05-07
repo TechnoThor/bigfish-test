@@ -1,6 +1,6 @@
 # bigfish-test
 
-##Beüzemelés linuxon
+## Beüzemelés linuxon
 szükség hogy telepítsük a gépünkre a Dockert
 
 a project gyökérmappában futtasuk a "docker-compose up -d" parancsot
@@ -11,7 +11,7 @@ ezután szükséges futtatni egy "docker exec -it bigfish-test_app_1 bash" paran
 
 ezután a böngészőben már elérhető az oldal: http://localhost:8000/
 
-##Api útvonalak
+## Api útvonalak
 
 POST:: '/users' => Felhasználó létrehozása
                   paraméterek => "name, email, dateOfBirth, phoneNumbers=>array"
